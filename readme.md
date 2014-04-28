@@ -15,6 +15,21 @@ What you'll need to get the project running
 
 > Note that Node modules must be installed within the  ```/node-server ``` directory.
 
+After module installations the directory of ```/node-server ``` should look like the following:
+
+- __/node-server__
+  - __config__
+ - __dbCalls__
+ - __node_modules__
+     - .__bin__
+     - .__express__
+     - .__mongodb__
+     - .__socket.io__
+ - package.json
+ - server.js
+
+> Folders are in bold.
+
 ## Testing
 
 _There are currently no tests for this app._
