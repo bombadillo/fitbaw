@@ -1,0 +1,16 @@
+<% if (loaded) { %>
+	<div class="list-group-item" href="javascript:void(0)">
+		<p class="list-group-item-text text-muted">
+		<i class="fa fa-smile-o success"></i> <%= name %> has been loaded
+
+<% } else { %>
+	<div class="list-group-item not-loaded" href="javascript:void(0)" title="This has either failed to load or is not deemed a required JS plugin.">
+		<p class="list-group-item-text text-muted">
+		<i class="fa fa fa-meh-o error"></i> <%= name %> has not been loaded
+
+<% } %>
+
+		<p class="info ghost"><small><%= info %> <a href="<%= link %>">more info <i class="fa fa-external-link"></i></a></small></p>
+
+		</p>
+	</div>

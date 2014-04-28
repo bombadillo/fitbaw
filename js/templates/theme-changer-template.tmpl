@@ -1,0 +1,6 @@
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Change Theme <b class="caret"></b></a>
+<ul class="dropdown-menu">
+	<% _.each(themes, function(theme) { %>
+		<li><a href="javascript:void(0)" class="change-theme"><%= theme.name %></a></li>
+	<% }); %>
+</ul>
