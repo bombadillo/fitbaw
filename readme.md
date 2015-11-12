@@ -6,7 +6,7 @@ A basic app demonstrating a back-end implementation of Node.js, Socket.io and Mo
 
 What you'll need to get the project running
 
-* Node.js
+* [Node.js](https://nodejs.org/en/download/)
 * [MongoDB](https://www.mongodb.org/downloads#production)
 
 ## Testing
