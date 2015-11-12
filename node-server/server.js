@@ -196,6 +196,7 @@ io.on('connection', function (socket)
   {
       // If the chat group does not exist, create it.
       if (!chatGroups[data.gameRef]) chatGroups[data.gameRef] = data.gameRef;
+      console.log(data.gameRef);
       // Join the user with the chat group.
       socket.join(chatGroups[data.gameRef]);
 

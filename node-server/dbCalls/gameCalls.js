@@ -204,13 +204,8 @@ module.exports = {
             console.log('Game inserted')
               // Set the message to cloned version of contants message.
             var message = functions.clone(constants.messages.databaseWriteSuccess);
-            console.log(message)
-            console.log(record);
             // Set ID to message.
             message._id = record._id;
-
-            console.log(message.__id);
-
             // Send response to client that initiated request.
             socket.emit('game:insertResponse', message);
             socket.broadcast.emit('game:inserted', record);
