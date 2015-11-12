@@ -1,4 +1,4 @@
-app.HomeController = 
+app.HomeController =
 {
 	// Models.
 	// Controllers.
@@ -14,8 +14,8 @@ app.HomeController =
 	/* Name      start
 	* Purpose   To start the app loading all necessary models, collections, views and any
 	*       	other necessary objects.
-	*/     	
-	start: function() 
+	*/
+	start: function()
 	{
 		app.log('Home Controller initiated.', 'initiated');
 
@@ -23,10 +23,10 @@ app.HomeController =
 	    var $this = this;
 
 	    // Use underscore extend function to assign Backbone events object to controller.
-	    _.extend(this, Backbone.Events);  		
-	
+	    _.extend(this, Backbone.Events);
+
 		// Create views.
-		this.gamesView = new GamesView({ el: this.elGamesView });		
+		this.gamesView = new GamesView({ el: this.elGamesView });
 
 		// Generate user ID.
 		app.userId = "anon" + Math.floor((Math.random()*1024)+1);
@@ -41,19 +41,19 @@ app.HomeController =
 		this.setupNodeSocket();
 
 	    // Call function to setup routes.
-	    this.setupRoutes();	
+	    this.setupRoutes();
 
 	    /* DOM Event Handlers */
 
 	    // Call function to setup DOM event listeners.
 	    app.setupDOMListeners();
 
-		/* END DOM Event Handlers */  
+		/* END DOM Event Handlers */
 	},
 
 	/*  Name      setupRoutes
 	 *  Purpose   To setup all the routes for the app.
-	*/     	
+	*/
 	setupRoutes: function()
 	{
         // Assign controller scope.
@@ -61,12 +61,12 @@ app.HomeController =
 
  		// Initiate the router
         var app_router = new AppRouter();
-     
+
         // Get game route.
         app_router.on('route:getGame', function(id)
         {
 	    	// Hide all elements.
-	    	$('.hide-content').slideUp();		
+	    	$('.hide-content').slideUp();
 
 	    	// Set the current route value.
 	    	app.currentRoute = 'getGame';
@@ -80,8 +80,8 @@ app.HomeController =
         });
 
         // Get games route.
-        app_router.on('route:getGames', function() 
-        {   
+        app_router.on('route:getGames', function()
+        {
 			// Hide all modals.
 			$('.modal').modal('hide');
 
@@ -96,45 +96,45 @@ app.HomeController =
 
 			app.log('Games', 'routeChange');
         });
-        // END route.        
+        // END route.
 
         // Default route (Home).
-        app_router.on('route:defaultRoute', function() 
-        {  
+        app_router.on('route:defaultRoute', function()
+        {
 			// Hide all modals.
 			$('.modal').modal('hide');
 
         	// Set the current route value.
-        	app.currentRoute = 'default';        	
+        	app.currentRoute = 'default';
         	// Hide all elements.
         	$('.hide-content').slideUp();
 
         	// Show element.
         	$('#home-content').slideDown();
 
-            app.log('Home', 'routeChange');           
-        });            
+            app.log('Home', 'routeChange');
+        });
 
         // Start Backbone history, a necessary step for bookmarkable URL's
-        Backbone.history.start();        
+        Backbone.history.start();
 	},
 
 	/*  Name      setupNodeSocket
 	 *  Purpose   To setup the node socket. This includes invoking the socket and
 	 *            creating listeners for various messages.
-	*/    
+	*/
 	setupNodeSocket: function()
 	{
-	    // Create web socket instance.
-		app.nodeSocket = io.connect('http://88.208.234.78:3000');
+    // Create web socket instance.
+		app.nodeSocket = io.connect(app.urls.serverSocket);
 
 		// Test connection status.
-		app.nodeSocket.on('connectionStatus', function (data) 
+		app.nodeSocket.on('connectionStatus', function (data)
 		{
 			app.log('Node Socket Status: '+ data.connectionStatus);
-		});		
+		});
 
-		// On games request response.		
+		// On games request response.
 		app.nodeSocket.on('getGames:response', function (data)
 		{
 			// If an error code has been returned.
@@ -142,7 +142,7 @@ app.HomeController =
 
 			// Trigger event, passing the data.
 			Backbone.trigger('games:loaded', data);
-		});	
+		});
 
 		// On game request response.
 		app.nodeSocket.on('getGame:response', function (data)
@@ -153,9 +153,9 @@ app.HomeController =
 			Backbone.trigger('game:loaded', data);
 		});
 
-		// On game insert request response.	
+		// On game insert request response.
 		app.nodeSocket.on('game:insertResponse', function (data)
-		{						
+		{
 			// If an error code has been returned.
 			data.errors = data.errorCode < 1 ? true : false;
 
@@ -197,7 +197,7 @@ app.HomeController =
 
 			// Trigger event, passing the data.
 			Backbone.trigger('game:removed', data);
-		});		
+		});
 
 		// On chat request response.
 		app.nodeSocket.on('getChat:response', function(data)
@@ -206,7 +206,7 @@ app.HomeController =
 			data.errors = data.errorCode < 1 ? true : false;
 
 			// Trigger event, passing the data.
-			Backbone.trigger('chat:loaded', data);		
+			Backbone.trigger('chat:loaded', data);
 		});
 
 		// On chat insert response.
@@ -216,7 +216,7 @@ app.HomeController =
 			data.errors = data.errorCode < 1 ? true : false;
 
 			// Trigger event, passing the data.
-			Backbone.trigger('chat:addInserted', data);		
+			Backbone.trigger('chat:addInserted', data);
 		});
 
 		// On chat insert response.
@@ -226,19 +226,19 @@ app.HomeController =
 			data.errors = data.errorCode < 1 ? true : false;
 
 			// Trigger event, passing the data.
-			Backbone.trigger('chat:inserted', data);		
-		});		
+			Backbone.trigger('chat:inserted', data);
+		});
 	},
 
 	/*  Name      onAddGame
 	 *  Purpose   To check if addGameView has been instantiated.
 	 *  Returnes  If the view is not defined it creates the view. 'game:add' event is triggered.
-	*/    
+	*/
 	onAddGame: function()
 	{
 		// If the view does not exist.
-		if (!this.addGameView) this.addGameView = new AddGameView({ el: this.elAddGame });			
-		
+		if (!this.addGameView) this.addGameView = new AddGameView({ el: this.elAddGame });
+
 		// Trigger event.
 		Backbone.trigger('game:add');
 	},
@@ -246,10 +246,10 @@ app.HomeController =
 	/*  Name      onGameShow
 	 *  Purpose   To check if gameView has been instantiated.
 	 *  Returnes  If the view is not defined it creates the view. 'game:show' event is triggered.
-	*/   
+	*/
 	onGameShow: function(game)
 	{
 
 	}
-	
+
 }

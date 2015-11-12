@@ -1,6 +1,6 @@
 // config.js
 // ========
-module.exports = 
+module.exports =
 {
-	mongoUrl: 'mongodb://88.208.234.78:27017/'
+	mongoUrl: 'mongodb://localhost:27017/'
 };

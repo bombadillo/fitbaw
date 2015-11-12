@@ -1,7 +1,7 @@
-var app = 
+var app =
 {
     // Global variables.
-    urls: { games: '/node/games' },
+    urls: { games: '/node/games', serverSocket: 'http://localhost:3000' },
     currentView: undefined,
 
     bootstrapRowModulus: undefined,
@@ -38,14 +38,14 @@ var app =
 
 
     /* Name      requireTemplate
-     * Purpose   To take in a template name and locate the template within the directory. 
+     * Purpose   To take in a template name and locate the template within the directory.
      * Params    templateName     The template to be loaded.
      * Returns   +ve     If the template is found, append it to the head of the document.
-    */      
-    requireTemplate: function(templateName) 
+    */
+    requireTemplate: function(templateName)
     {
         var template = $('#' + templateName);
-        if (template.length === 0) 
+        if (template.length === 0)
         {
             var tmpl_dir = 'js/templates/';
             var tmpl_url = tmpl_dir + templateName + '.tmpl';
@@ -56,13 +56,13 @@ var app =
                 method: 'GET',
                 async: false,
                 contentType: 'text',
-                success: function (data) 
+                success: function (data)
                 {
                     tmpl_string = data;
                 }
             });
 
-            $('head').append('<script id="' + 
+            $('head').append('<script id="' +
             templateName + '" type="text/template">' + tmpl_string + '<\/script>');
         }
     },
@@ -74,18 +74,18 @@ var app =
      *           elClass    The class name that will be added to the created element.
      *           timeout    Boolean. If true, the message will be faded out after a set time.
      * Returns   Prepends the html to the element.
-    */       
-    displayMessage: function(el, message, elClass, timeout)                                      
+    */
+    displayMessage: function(el, message, elClass, timeout)
     {
         // If the el and message vars are not null or empty.
         if (el !== null && el !== '' && message !== null && message !== '' )
-        {            
-            // Call function to convert elClass into jQuery selector compatible string. 
-            var errorInstance = app.convertStringToSingleElementClassSelector(elClass);            
+        {
+            // Call function to convert elClass into jQuery selector compatible string.
+            var errorInstance = app.convertStringToSingleElementClassSelector(elClass);
 
             // If there are any message instances with the same class, remove them.
             if ($(errorInstance).length > 0)
-            {                
+            {
                 $(errorInstance).remove();
             }
 
@@ -97,40 +97,40 @@ var app =
 
             // If a timeout has been requested.
             if (timeout)
-            {                
+            {
                 // Set timeout.
-                window.setTimeout(function() 
-                { 
+                window.setTimeout(function()
+                {
                     // Hide the message.
                     $(errorInstance).slideUp(function()
                     {
                         // Remove DOM element.
                         $(this).remove();
-                    }); 
-                }, 7000); 
+                    });
+                }, 7000);
                 // END timeout.
             }
             // END if timeout.
-        }        
+        }
         // END if el and message vars exist.
-    },   
+    },
 
     /* Name      convertStringToSingleElementClassSelector
      * Purpose   To convert a string into a class selector. Can take multiple classes seperated by a space.
      * Params    string     The string to be processed..
      * Returns   The string converted into a class selector.
-    */      
-    convertStringToSingleElementClassSelector: function(string)            
+    */
+    convertStringToSingleElementClassSelector: function(string)
     {
-        string = string.replace( /\s\s+/g, ' ' );    
+        string = string.replace( /\s\s+/g, ' ' );
         string = string.split(' ').join('.');
-        if (string[0] !== '.') string = '.' + string; 
+        if (string[0] !== '.') string = '.' + string;
         return string;
-    },  
+    },
 
-    getAge: function(dateString) 
+    getAge: function(dateString)
     {
-      var birthday = +new Date(dateString);    
+      var birthday = +new Date(dateString);
       return ~~((Date.now() - birthday) / (31557600000));
     },
 
@@ -138,10 +138,10 @@ var app =
     /* Name      isNumber
      * Purpose   To check if variable is a number.
      * Params    n      The variable to check.
-     * Returns   +ve    true 
+     * Returns   +ve    true
      *           -ve    false
-    */  
-    isNumber: function(n) 
+    */
+    isNumber: function(n)
     {
       return !isNaN(parseFloat(n)) && isFinite(n);
     },
@@ -151,35 +151,35 @@ var app =
      * Params    el              The element to be fixed.
      *           iTop            The number of pixels from the top the element is to be fixed to.
      *           sCallBackEvent  The name of the event to be fired when the element is fixed.
-     *           bResetWidth     Boolean to determine if width should be reset on change back to 
+     *           bResetWidth     Boolean to determine if width should be reset on change back to
      *                           static position.
      * Returns   Fixes the element to the top of the page if the element is not fixed. If the element is fixed then
      *           it will be changed to position:static.
-    */     
+    */
     enableFixedElement: function(el, iTop, sFixedCallBackEvent, sStaticCallBackEvent, bResetWidth)
     {
         var $this = this;
 
         // Int holding the number pixels the element is from the top.
-        var stickyTop = $(el).offset().top; 
+        var stickyTop = $(el).offset().top;
 
         // On window scroll event.
         $(window).scroll(function()
-        {   
+        {
 
-            var windowHeight = "innerHeight" in window 
+            var windowHeight = "innerHeight" in window
                            ? window.innerHeight
-                           : document.documentElement.offsetHeight; 
+                           : document.documentElement.offsetHeight;
 
             var marketHeight = $('#market-lines').innerHeight();
 
-            if (windowHeight - marketHeight > 0) return false;            
+            if (windowHeight - marketHeight > 0) return false;
 
-            // Prevent further execution if the browser width is below 759. This is the width that bootstrap takes over for 
+            // Prevent further execution if the browser width is below 759. This is the width that bootstrap takes over for
             // mobile devices.
             if ($(window).width() <= 759) return false;
 
-            if (window.innerWidth < 982) 
+            if (window.innerWidth < 982)
             {
                 iTop = 0;
             }
@@ -188,17 +188,17 @@ var app =
             var windowTop = $(window).scrollTop();
 
             // If the elements position is less than the windows position then make it fixed.
-            if (stickyTop < windowTop + iTop) 
+            if (stickyTop < windowTop + iTop)
             {
                 var currWidth = $(el).innerWidth();
 
                 $(el).css({ position: 'fixed', top: iTop + 'px', width: currWidth });
 
                 // If the param has been passed in, fire event.
-                if (sFixedCallBackEvent) Backbone.trigger(sFixedCallBackEvent);                
+                if (sFixedCallBackEvent) Backbone.trigger(sFixedCallBackEvent);
             }
             // Otherwise make it static.
-            else 
+            else
             {
                 $(el).css('position','static');
 
@@ -206,9 +206,9 @@ var app =
                 if (bResetWidth) $(el).css('width', '');
 
                 // If the param has been passed in, fire event.
-                if (sStaticCallBackEvent) Backbone.trigger(sStaticCallBackEvent); 
+                if (sStaticCallBackEvent) Backbone.trigger(sStaticCallBackEvent);
             }
-        });      
+        });
         // END
     },
 
@@ -250,7 +250,7 @@ var app =
     popup: function(url, name, settings)
     {
         // this checks if settings have been passed with width/height/etc
-        if(settings) 
+        if(settings)
         {
             var bFixed = true;
 
@@ -259,19 +259,19 @@ var app =
                 var iHeight = screen.availHeight*0.94;
                 settings = settings.replace("height=100%","height="+iHeight);
             }
-        } 
-        else 
+        }
+        else
         {
             var bFixed = false;
             settings = "scrollbars=1,resizable=1,height=600,width=400";
         }
 
         var frameWidth ='', frameHeight ='', newWidth ='', newHeight ='', a ='';
-        try 
+        try
         {
             var newWindow = window.open(url,name,settings);
         }
-        catch(e) 
+        catch(e)
         {
         return false;
         }
@@ -299,12 +299,12 @@ var app =
         {
             newWindow.resizeTo(winWidth,winHeight)
         }, 50);
-        
+
         newWindow.location = url;
         newWindow.focus();
         // the var we set previously, if settings have been past ignore the next lot of code
         if(bFixed) return newWindow;
-       
+
         if (self.innerWidth)
         {
             frameWidth = self.innerWidth;
@@ -335,18 +335,18 @@ var app =
      * Purpose   To create a clone of an object with no reference to the object being cloned.
      * Params    obj    The object to be cloned.
      * Returns   The new object.
-    */    
-    clone: function(obj) 
+    */
+    clone: function(obj)
     {
         var target = {};
-        for (var i in obj) 
+        for (var i in obj)
         {
-            if (obj.hasOwnProperty(i)) 
+            if (obj.hasOwnProperty(i))
             {
                 target[i] = obj[i];
             }
         }
-        return target;   
+        return target;
     },
 
     /* Name      getCookie
@@ -354,11 +354,11 @@ var app =
      * Params    name      The name of the cookie to be used.
      * Returns   +ve       Returns the value of the cookie.
      *           -ve       null.
-    */  
-    getCookie: function(name) 
+    */
+    getCookie: function(name)
     {
         // Get document's cookie string.
-        var sDocumentCookies = document.cookie;   
+        var sDocumentCookies = document.cookie;
         // Split cookies to get each individual cookie.
         var aCookieSplit = sDocumentCookies.split('; ');
 
@@ -366,26 +366,26 @@ var app =
         for(var i = 0; i < aCookieSplit.length; i++)
         {
             // Split the item (cookie) by = to get key/value pairs.
-            var aTempSplit = aCookieSplit[i].split('=');    
-       
+            var aTempSplit = aCookieSplit[i].split('=');
+
             // If the cookie name is equal to the value passed in.
             if (aTempSplit[0] === name)
             {
                 // Return the value.
                 return unescape(aTempSplit[1]);
-            } 
+            }
             // END if.
         }
         // END loop.
 
-        // Return null if cookie not found. 
+        // Return null if cookie not found.
         return null;
     },
 
     /* Name      deleteCookie
      * Purpose   To set the value of a cookie to the past which will prevent it from being used.
      * Params    name      The name of the cookie to be used.
-    */  
+    */
     deleteCookie: function(name) {
         document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     },
@@ -395,8 +395,8 @@ var app =
      * Params    name      The name of the cookie to be used.
      *           value     The value to be assigned to the cookie.
      *           days      Number of days it's to be valid for.
-    */  
-    createCookie: function(name, value, days) 
+    */
+    createCookie: function(name, value, days)
     {
         if (days) {
             var date = new Date();
@@ -410,13 +410,13 @@ var app =
     /*  Name      log
      *  Purpose   To log a message to the browsers console.
      *  @params   {string}    message    The message to be output.
-     *            {string}    sEvent     The type of message.            
-    */     
+     *            {string}    sEvent     The type of message.
+    */
     log: function(message, type)
     {
         // Check if console.log exists.
         if (console && console.log)
-        {            
+        {
             // Variable to hold style.
             var style = "padding: 3px;";
 
@@ -458,8 +458,8 @@ var app =
 
     /*  Name      setBootstrapModulus
      *  Purpose   To set the value of the variable depending on the current browser width.
-     *  @params   {int}     idth    The current browser width.       
-    */     
+     *  @params   {int}     idth    The current browser width.
+    */
     setBootstrapModulus: function(width)
     {
         // If the width is >= than 1200px.
@@ -467,7 +467,7 @@ var app =
         {
             app.bootstrapRowModulus = 3;
             app.bootstrapDeviceSize = 'large';
-        }        
+        }
         // If the width is >= 992px.
         else if (width >= 992)
         {
@@ -479,22 +479,22 @@ var app =
         {
             app.bootstrapRowModulus = 2;
             app.bootstrapDeviceSize = 'small';
-        }   
+        }
         // If the width is < 768px.
         else if (width < 768)
         {
             app.bootstrapRowModulus = 1;
             app.bootstrapDeviceSize = 'extraSmall';
-        }                
+        }
     },
 
     /*  Name      validateInput
      *  Purpose   To validate an input based on it's data-type.
-    */   
+    */
     validateInput: function(input)
     {
         // Get the data type for the input, the value, and set a var to hold error result.
-        var dataType = input.data('type')        
+        var dataType = input.data('type')
           , val = input.val()
           , errors = false;
 
@@ -505,7 +505,7 @@ var app =
             app.addInputError(input);
             // Prevent further execution.
             return false;
-        } 
+        }
 
         // Switch the data type.
         switch (dataType)
@@ -514,7 +514,7 @@ var app =
                 if (typeof val !== 'string')
                 {
                     // Call function to remove error display from input.
-                    app.addInputError(input);                    
+                    app.addInputError(input);
                     errors = true;
                 }
             break;
@@ -523,27 +523,27 @@ var app =
                 if (isNaN(val))
                 {
                     // Call function to remove error display from input.
-                    app.addInputError(input);     
-                    errors = true;               
-                }            
-            break;                  
+                    app.addInputError(input);
+                    errors = true;
+                }
+            break;
         }
 
-        // If errors is false. 
+        // If errors is false.
         if (!errors) app.removeInputError(input);
     },
 
 
     /*  Name      addInputError
      *  Purpose   To add error attributes to an input when it has failed validation.
-    */   
+    */
     addInputError: function(input)
     {
         // Get the input container.
         var elFormGroup = input.closest('.form-group');
 
         // Remove class from input container.
-        elFormGroup.removeClass('has-success');  
+        elFormGroup.removeClass('has-success');
 
         // Add class to input container.
         elFormGroup.addClass('has-error');
@@ -557,14 +557,14 @@ var app =
 
     /*  Name      removeInputError
      *  Purpose   To remove error attributes from an input when it has passed validation.
-    */   
+    */
     removeInputError: function(input)
     {
         // Get the input container.
         var elFormGroup = input.closest('.form-group');
 
         // Remove class from input container.
-        elFormGroup.removeClass('has-error');   
+        elFormGroup.removeClass('has-error');
 
         // Add success class.
         elFormGroup.addClass('has-success');
@@ -577,22 +577,22 @@ var app =
     /*  Name      onWindowResize
      *  Purpose   To get the width of the document's body and provide that to various
      *            modules.
-    */    
+    */
     onWindowResize: function()
     {
         // Get the width.
         var width = $('body').outerWidth();
-        
+
         // Call function to set Bootstrap row modulus.
         app.setBootstrapModulus(width);
 
         // Trigger event.
-        Backbone.trigger(app.currentRoute +':resize');      
-    },    
+        Backbone.trigger(app.currentRoute +':resize');
+    },
 
     /*  Name      setupDOMListeners
      *  Purpose   To listen for DOM events and carry out logic.
-    */   
+    */
     setupDOMListeners: function()
     {
         // Assign scope.
@@ -621,21 +621,21 @@ var app =
         {
             // Call function to handle resize();
             $this.onWindowResize();
-        });     
+        });
 
-        // On add-game click. 
-        $(document).on('click', '.add-game', function() 
+        // On add-game click.
+        $(document).on('click', '.add-game', function()
         {
             // Trigger event.
             Backbone.trigger('game:addClick');
-        });        
+        });
 
         // When a navbar link is clicked.
         $(document).on('click', '#navbar a', function()
         {
             // If the browser size is extraSmall, close menu.
             if ($this.bootstrapDeviceSize === 'extraSmall') $('#navbar .navbar-toggle').click()
-        });        
+        });
     }
 
 
@@ -647,7 +647,7 @@ var app =
  * Params    n                  The number the string is to be truncated by.
  *           useWordBoundary    If string is to preserve full words i.e. not cut off in middle of word.
  * Returns   The string converted into a class selector.
-*/      
+*/
 String.prototype.trunc = function(n,useWordBoundary)
 {
     var toLong = this.length>n,
@@ -663,7 +663,7 @@ if (typeof String.prototype.trim != 'function') { // detect native implementatio
   };
 }
 
-Number.prototype.toCurrency = function() 
+Number.prototype.toCurrency = function()
 {
     // pass a number and it will return it in a currency formatted string.
     // what it does that others dont though is onl
@@ -671,7 +671,7 @@ Number.prototype.toCurrency = function()
     var sNumber = this.toString();
     // first validate it as a number
     bSuccess = sNumber.match(/^[0-9]+([.]+[0-9]+){0,1}$/);
-    if(! bSuccess) 
+    if(! bSuccess)
     {
      return false;
     }
@@ -680,19 +680,19 @@ Number.prototype.toCurrency = function()
     // required. At the mo, just fixed at two limit
     // whole number
     bSuccess = sNumber.match(/^[0-9]+$/);
-    if(bSuccess) 
+    if(bSuccess)
     {
         return sNumber;
     }
     // one decimal place
     bSuccess = sNumber.match(/^[0-9]+([.]+[0-9]{1})+$/);
-    if(bSuccess) 
+    if(bSuccess)
     {
         return sNumber+"0";
     }
     // two decimal place
     bSuccess = sNumber.match(/^[0-9]+([.]+[0-9]{2})+$/);
-    if(bSuccess) 
+    if(bSuccess)
     {
         return sNumber;
     }
@@ -704,4 +704,3 @@ String.prototype.capitaliseFirstLetter = function()
 {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
-
