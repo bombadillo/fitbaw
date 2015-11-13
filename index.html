@@ -1,106 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Fitbaw!</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <!-- Styles -->
-        <link href="assets/bootstrap/css/font-awesome-4.css" rel="stylesheet">
-        <link href="css/styles.css" rel="stylesheet">
-        <link href="css/media.css" rel="stylesheet">
-        <!--[if gte IE 8]>
+
+<head>
+  <meta charset="utf-8">
+  <title>Fitbaw!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Styles -->
+  <link href="assets/bootstrap/css/font-awesome-4.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/media.css" rel="stylesheet">
+  <!--[if gte IE 8]>
         <link href="/css/ie.css" rel="stylesheet">
         <![endif]-->
-        <!--[if IE 8]>
+  <!--[if IE 8]>
         <style type="text/css">
             <link href="/css/ie.css" rel="stylesheet">
         </style>
         <![endif]-->
-        <!--[if lt IE 8]>
+  <!--[if lt IE 8]>
         <link href="/css/ie.css" rel="stylesheet">
         <![endif]-->
-        <!-- Fav and touch icons -->
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
-        <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    </head>
-    <body>
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+  <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
 
-        <!-- Alert Container -->
-        <div id="main-message-container">
-            
-        </div>
+<body>
 
-        <!-- Fixed navbar -->
-        <div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Fitbaw! <i class="fa fa-bullhorn"></i></a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#/games">View All Games</a></li>
-                        <li><a href="javascript:void(0)" class="add-game">Add Game</a></li>
-                    </ul>              
-                </div>
-                <!--/.nav-collapse -->
-            </div>
-        </div>
+  <!-- Alert Container -->
+  <div id="main-message-container">
+
+  </div>
+
+  <!-- Fixed navbar -->
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Fitbaw! <i class="fa fa-bullhorn"></i></a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#/games">View All Games</a></li>
+          <li><a href="javascript:void(0)" class="add-game">Add Game</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </div>
 
 
-        <div class="container">
+  <div class="container">
 
-            <div id="home-content" class="jumbotron hide-content text-center ghost">
-                <h1>Fitbaw!</h1>
-                <p class="lead">Aw the latest fitbaw.</p>
-                <p><a role="button" href="#/games" class="btn btn-lg btn-success">View All Games</a></p>
-            </div>   
+    <div id="home-content" class="jumbotron hide-content text-center ghost">
+      <h1>Fitbaw!</h1>
+      <p class="lead">Aw the latest fitbaw.</p>
+      <p><a role="button" href="#/games" class="btn btn-lg btn-success">View All Games</a></p>
+    </div>
 
-            <div id="games" class="hide-content ghost"></div>
+    <div id="games" class="hide-content ghost"></div>
 
-            <div id="game" class="hide-content ghost"></div>
-        </div>
-        
-        <!-- Add Game Modal -->
-        <div id="add-game" class="modal fade">
-        </div><!-- /.modal -->
+    <div id="game" class="hide-content ghost"></div>
+  </div>
 
-        <!-- END Add Game Modal -->
+  <!-- Add Game Modal -->
+  <div id="add-game" class="modal fade">
+  </div>
+  <!-- /.modal -->
 
-        <!-- Javascript
+  <!-- END Add Game Modal -->
+
+  <!-- Javascript
             Placed at the end of the document so the pages load faster -->
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
         <script src="/assets/js/html5shiv-printshiv.js"></script>
         <script src="/assets/js/json3.min.js"></script>
         <![endif]-->
-        <!--[if gte IE 8]>
+  <!--[if gte IE 8]>
         <script src="/assets/js/jquery-1-10-1.min.js"></script>
         <![endif]-->
-        <!--[if IE 8]>
+  <!--[if IE 8]>
         <script src="/assets/js/jquery-1-10-1.min.js"></script>
         </style>
         <![endif]-->
-        <!--[if lt IE 8]>
+  <!--[if lt IE 8]>
         <script src="/assets/js/jquery-1-10-1.min.js"></script>
         <script src="/assets/js/json3.min.js"></script>
         <![endif]-->
-        <!--[if !IE]><!-->
-        <script src="assets/js/jquery.min.js"></script>
-        <!--<![endif]-->
-        <script src="assets/js/head.load.js"></script>
-        <script src="js/load-scripts.js"></script>
-        <!-- ================================================== -->
-    </body>
-</html>
+  <!--[if !IE]><!-->
+  <script src="assets/js/jquery.min.js"></script>
+  <!--<![endif]-->
+  <script src="assets/js/head.load.js"></script>
+  <script src="js/load-scripts.js"></script>
+  <!-- ================================================== -->
+</body>
 
+</html>

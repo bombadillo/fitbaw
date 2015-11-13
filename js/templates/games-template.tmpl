@@ -2,20 +2,24 @@
 	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-3">
 		<% if (search) { %>
 			<a href="javascript:void(0)" class="btn btn-primary reset-search">Reset <i class="fa fa-undo"></i></a>
-		<% } %>
+			<% } %>
 	</div>
 	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-9">
 
-        <form class="search-form">
-        	<div class="form-group">
+		<form class="search-form">
+			<div class="form-group">
 				<div class="input-group">
 					<input type="text" placeholder="Search by team name" name="q" class="form-control">
 					<span class="input-group-btn">
-						<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+						<button class="btn btn-default" type="submit">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
 					</span>
-				</div><!-- /input-group -->            	
-            </div><!-- /form-group -->                                                 
-        </form>      
+				</div>
+				<!-- /input-group -->
+			</div>
+			<!-- /form-group -->
+		</form>
 
 	</div>
 </div>
@@ -25,23 +29,36 @@
 
 	<% var count = 0; %>
 
-	<div class="row padding-top">
-		<% _.each(games, function(game) { %>
+		<div class="row padding-top">
+			<% _.each(games, function(game) { %>
 
-			<% if (count !== 0 && count % app.bootstrapRowModulus === 0){ %> </div> <div class="row"><% } %>
+				<% if (count !== 0 && count % app.bootstrapRowModulus === 0){ %>
+		</div>
+		<div class="row">
+			<% } %>
 
-			<div data-id="<%= game._id %>" class="game well col-lg-3 col-md-3 col-sm-5 <%= (count % app.bootstrapRowModulus !== 0) ? 'col-lg-offset-1 col-md-offset-1 col-sm-offset-2' : '' %> <%= (app.bootstrapDeviceSize === 'extraSmall') ? 'text-center' : '' %>">
-				<h4 class="title"><%= game.homeTeam %> V <%= game.awayTeam %></h4>
-				<small><%= game.league %></small>
-				<h4>Result <span class="label <%= (game.win) ? 'label-success' : 'label-danger' %>"><%= game.homeResult %> - <%= game.awayResult %></span></h4>
-				<i class="fa fa-times-circle delete"></i>
-			</div>
-			
-			<% count++; %>
-		<% }) %>
-	</div>
-<% } else { %>
+				<div data-id="<%= game._id %>" class="game well col-lg-3 col-md-3 col-sm-5 <%= (count % app.bootstrapRowModulus !== 0) ? 'col-lg-offset-1 col-md-offset-1 col-sm-offset-2' : '' %> <%= (app.bootstrapDeviceSize === 'extraSmall') ? 'text-center' : '' %>">
+					<h4 class="title">
+						<%= game.homeTeam %> V
+							<%= game.awayTeam %>
+					</h4>
+					<small>
+						<%= game.league %>
+					</small>
+					<h4>Result
+						<span class="label <%= (game.win) ? 'label-success' : 'label-danger' %>">
+							<%= game.homeResult %> -
+								<%= game.awayResult %>
+						</span>
+					</h4>
+					<i class="fa fa-times-circle delete"></i>
+				</div>
 
-	<div class="alert alert-info">Sorry, no games were returned.</div>
+				<% count++; %>
+					<% }) %>
+		</div>
+		<% } else { %>
 
-<% } %>
+			<div class="alert alert-info">Sorry, no games were returned.</div>
+
+			<% } %>

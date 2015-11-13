@@ -1,34 +1,16 @@
-@media (min-width: 1200px) {
-
-}
-
-@media (max-width: 1200px) {
-
-}
-
-
-@media (max-width: 1024px) {
-
-}
-
-@media (max-width: 980px) {
-
-
-}
-
+@media (min-width: 1200px) {}
+@media (max-width: 1200px) {}
+@media (max-width: 1024px) {}
+@media (max-width: 980px) {}
 @media (min-width: 768px) and (max-width: 979px) {
-	#main-message-container {
-	    width:80%;
-	    left:50%;	
-	}
+  #main-message-container {
+    width: 80%;
+    left: 50%;
+  }
 }
-
 @media (max-width: 767px) {
-
-	#main-message-container {
-	    width:80%;
-	    left:50%;	
-	}
-
+  #main-message-container {
+    width: 80%;
+    left: 50%;
+  }
 }
-

@@ -3,37 +3,47 @@
 
 	<% if (messages.length > 0){ %>
 
-		<% if (numMessages < 1) { %> <div class="alert alert-info">There are currently no messages in this chat.</div> <% } %>
+		<% if (numMessages < 1) { %>
+			<div class="alert alert-info">There are currently no messages in this chat.</div>
+			<% } %>
 
-		<div class="chats">
-			<% _.each(messages, function(message) { %>
+				<div class="chats">
+					<% _.each(messages, function(message) { %>
 
-				<% if (message.notification){ %>
-					<div class="row message notification">
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3"> <i class="fa fa-info-circle"></i> <%= message.notification %> </div>
-						<div class="col-lg-10 col-md-10 col-sm-10 col-xs-9"> <%= message.message %> </div>
-						<button type="button" class="close" aria-hidden="true" data-cid="<%= message.cid %>">&times;</button>
-					</div>
-					<% console.log(message) %>
+						<% if (message.notification){ %>
+							<div class="row message notification">
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3"> <i class="fa fa-info-circle"></i>
+									<%= message.notification %>
+								</div>
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-9">
+									<%= message.message %>
+								</div>
+								<button type="button" class="close" aria-hidden="true" data-cid="<%= message.cid %>">&times;</button>
+							</div>
+							<% console.log(message) %>
+								<% } else { %>
+									<div class="row message">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 text-info"> <i class="fa fa-user"></i>
+											<%= message.user %>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-10 col-xs-9">
+											<%= message.message %>
+										</div>
+									</div>
+									<% } %>
+
+										<% }); %>
+				</div>
+
 				<% } else { %>
-					<div class="row message">
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 text-info"> <i class="fa fa-user"></i> <%= message.user %> </div>
-						<div class="col-lg-10 col-md-10 col-sm-10 col-xs-9"> <%= message.message %> </div>
-					</div>
-				<% } %>
-
-			<% }); %>
-		</div>
-
-	<% } else { %>
-		<div class="alert alert-info">There are currently no messages in this chat.</div>
-	<% } %>
-		<div class="row submit-message-container">
-			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-group">
-				<input name="message" class="form-control" type="text" placeholder="Enter your message..." title="You must enter text to send a message.">
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-				<input type="button" class="btn btn-lg btn-block btn-success submit" value="Send">
-			</div>
-		</div>	
+					<div class="alert alert-info">There are currently no messages in this chat.</div>
+					<% } %>
+						<div class="row submit-message-container">
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 form-group">
+								<input name="message" class="form-control" type="text" placeholder="Enter your message..." title="You must enter text to send a message.">
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<input type="button" class="btn btn-lg btn-block btn-success submit" value="Send">
+							</div>
+						</div>
 </div>

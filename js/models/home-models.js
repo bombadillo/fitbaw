@@ -2,22 +2,19 @@
  *  Game models and collections
  */
 
-var GameModel = Backbone.Model.extend(
-{
-	idAttribute: '_id'
+var GameModel = Backbone.Model.extend({
+  idAttribute: '_id'
 });
 
-var GameCollection = Backbone.Collection.extend(
-{
-	model: GameModel,
+var GameCollection = Backbone.Collection.extend({
+  model: GameModel,
 
-	urlRoot: app.urls.games,	
+  urlRoot: app.urls.games,
 
-	url: function()
-	{		
-		// Define node URL.
-		return this.urlRoot;
-	}
+  url: function() {
+    // Define node URL.
+    return this.urlRoot;
+  }
 });
 
 /*********************************************/
@@ -27,17 +24,14 @@ var GameCollection = Backbone.Collection.extend(
  *  Chat models and collections
  */
 
-var ChatModel = Backbone.Model.extend(
-{
-	initialize: function()
-	{
-		this.set('cid', this.cid);
-	}
+var ChatModel = Backbone.Model.extend({
+  initialize: function() {
+    this.set('cid', this.cid);
+  }
 });
 
-var ChatCollection = Backbone.Collection.extend(
-{
-	model: ChatModel
+var ChatCollection = Backbone.Collection.extend({
+  model: ChatModel
 });
 
 /*********************************************/

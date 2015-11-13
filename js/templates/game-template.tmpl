@@ -1,27 +1,37 @@
-	<% if (!errors){ %>
-		<div class="well">
-			<div class="row">
-				
-				<div data-id="<%= _id %>" class="game col-lg-12 col-md-12 col-sm-12 text-center">
-					<h1><%= homeTeam %> V <%= awayTeam %></h1>
-					<h6><%= league %></h6>
-					<h3>Result <span class="label <%= (win) ? 'label-success' : 'label-danger' %>"><%= homeResult %> - <%= awayResult %></span></h3>
-				</div>	
+<% if (!errors){ %>
+	<div class="well">
+		<div class="row">
 
+			<div data-id="<%= _id %>" class="game col-lg-12 col-md-12 col-sm-12 text-center">
+				<h1>
+					<%= homeTeam %> V
+						<%= awayTeam %>
+				</h1>
+				<h6>
+					<%= league %>
+				</h6>
+				<h3>Result
+					<span class="label <%= (win) ? 'label-success' : 'label-danger' %>">
+						<%= homeResult %> -
+							<%= awayResult %>
+					</span>
+				</h3>
 			</div>
-			<hr>
-			<div class="row">
-				
-				<div class="chat-container ghost"></div>
 
-			</div>
 		</div>
+		<hr>
+		<div class="row">
+
+			<div class="chat-container ghost"></div>
+
+		</div>
+	</div>
 	<% } else { %>
 
 		<div class="row">
-			
+
 			<div class="alert alert-info">Sorry, game not found. <a href="#/games" class="btn btn-primary">View all games</a></div>
 
 		</div>
 
-	<% } %>
+		<% } %>

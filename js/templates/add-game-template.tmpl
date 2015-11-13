@@ -1,80 +1,88 @@
-<div class="modal-dialog">                
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Add Game</h4>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title">Add Game</h4>
+    </div>
+
+    <div class="modal-body">
+      <!-- Form -->
+      <form role="form">
+        <!-- Form Group -->
+        <div class="form-group">
+
+          <label for="home-team">Home Team</label>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon">@</span>
+            <input name="homeTeam" type="text" class="form-control data" data-type="string" placeholder="Home team" title="This is a required field.">
+          </div>
         </div>
+        <!-- /Form Group -->
 
-        <div class="modal-body">
-        	<!-- Form -->
-			<form role="form">
-				<!-- Form Group -->
-				<div class="form-group">
-
-					<label for="home-team">Home Team</label>
-					<div class="input-group input-group-lg">
-					  <span class="input-group-addon">@</span>
-					  <input name="homeTeam" type="text" class="form-control data" data-type="string" placeholder="Home team" title="This is a required field.">
-					</div>
-				</div><!-- /Form Group -->
-
-				<!-- Form Group -->
-				<div class="form-group">
-					<label for="away-team">Away Team</label>
-					<div class="input-group input-group-lg">
-					  <span class="input-group-addon">@</span>
-					  <input name="awayTeam" type="text" class="form-control data" data-type="string" placeholder="Away team" title="This is a required field.">
-					</div>
-				</div><!-- /Form Group -->
-
-				<!-- Form Group -->
-				<div class="form-group">
-					<label for="league">League/Division</label>
-					<div class="input-group input-group-lg">
-					  <span class="input-group-addon">@</span>
-					  <input name="league" type="text" class="form-control data" data-type="string" placeholder="League/division" title="This is a required field.">
-					</div>			
-				</div>
-				<!-- /Form Group -->
-
-			</form> <!-- /Form -->
-
-			 <!-- Form -->
-			<label for="result">Result</label>
-			<form class="form-inline" role="form">
-				
-				<!-- Form Group -->
-				<div class="form-group result">
-					<div class="input-group input-group-lg">
-					  <span class="input-group-addon">Home</span>
-					  <input name="homeResult" type="text" class="form-control data" data-type="int" placeholder="" title="This is a required field and must be a valid number.">
-					</div>	
-				</div><!-- /Form Group -->
-
-				<!-- Form Group -->
-				<div class="form-group result">
-					<div class="input-group input-group-lg">
-					  <span class="input-group-addon">Away</span>
-					  <input name="awayResult" type="text" class="form-control data" data-type="int" placeholder="" title="This is a required field and must be a valid number.">
-					</div>	
-				</div><!-- Form Group -->
-
-				<!-- Form Group -->
-				<div class="form-group result">
-					<div class="input-group input-group-lg">
-						<input name="win" type="button" class="btn btn-primary btn-lg data" data-type="bool" data-toggle="button" value="Win?">
-					</div>	
-				</div><!-- Form Group -->
-				
-
-			</form> <!-- /Form -->
-
+        <!-- Form Group -->
+        <div class="form-group">
+          <label for="away-team">Away Team</label>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon">@</span>
+            <input name="awayTeam" type="text" class="form-control data" data-type="string" placeholder="Away team" title="This is a required field.">
+          </div>
         </div>
+        <!-- /Form Group -->
 
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary submit">Add Game</button>
+        <!-- Form Group -->
+        <div class="form-group">
+          <label for="league">League/Division</label>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon">@</span>
+            <input name="league" type="text" class="form-control data" data-type="string" placeholder="League/division" title="This is a required field.">
+          </div>
         </div>
-    </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
+        <!-- /Form Group -->
 
+      </form>
+      <!-- /Form -->
+
+      <!-- Form -->
+      <label for="result">Result</label>
+      <form class="form-inline" role="form">
+
+        <!-- Form Group -->
+        <div class="form-group result">
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon">Home</span>
+            <input name="homeResult" type="text" class="form-control data" data-type="int" placeholder="" title="This is a required field and must be a valid number.">
+          </div>
+        </div>
+        <!-- /Form Group -->
+
+        <!-- Form Group -->
+        <div class="form-group result">
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon">Away</span>
+            <input name="awayResult" type="text" class="form-control data" data-type="int" placeholder="" title="This is a required field and must be a valid number.">
+          </div>
+        </div>
+        <!-- Form Group -->
+
+        <!-- Form Group -->
+        <div class="form-group result">
+          <div class="input-group input-group-lg">
+            <input name="win" type="button" class="btn btn-primary btn-lg data" data-type="bool" data-toggle="button" value="Win?">
+          </div>
+        </div>
+        <!-- Form Group -->
+
+
+      </form>
+      <!-- /Form -->
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary submit">Add Game</button>
+    </div>
+  </div>
+  <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
